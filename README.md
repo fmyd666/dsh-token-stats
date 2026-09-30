@@ -56,14 +56,21 @@ dsh plugin --profile <你的profile> add link:/绝对/路径/dsh-token-stats
 无需构建步骤，Client 半边是纯 JavaScript（`window.__ModuleLoader__.load` 工厂格式）。
 
 ```bash
-node test/render.test.mjs   # 渲染与行为：K/M/B 边界、面板数值、边界场景、键覆盖守卫
-node test/icon.test.mjs     # 图标结构
-node test/served.test.mjs   # 与运行中服务器实际提供的字节比对（需本机 3081 端口在跑）
+node test/render.test.mjs    # 渲染与行为：K/M/B 边界、面板数值、边界场景、键覆盖守卫
+node test/icon.test.mjs      # 图标结构
+node test/served.test.mjs    # 与运行中服务器实际提供的字节比对（需本机 Web 服务在跑）
+node test/leak-audit.mjs     # 扫描公开仓库的已发布文件，确认无密钥/隐私信息
 ```
 
-`served.test.mjs` 需要本机 DSH Web 服务在运行；其余两个可离线运行。
+`served.test.mjs` 需要本机 DSH Web 服务在运行；其余三个可离线运行。
 
 渲染测试使用一个忠实模拟宿主查找链的 translate 桩（`自身命名空间 → common → 键名`），因此**引用别的插件私有命名空间的键会被测出来** —— 这正是本项目早期一个真实缺陷的成因。
+
+`leak-audit.mjs` 抓取公开仓库的**已发布字节**再扫描，所以 `.gitignore` 或暂存失误无法藏在干净的本地扫描之后。它覆盖密钥形态、私有中转域名、绝对路径与本机用户名（这两项在运行时从系统派生，不写死在脚本里）。
+
+## 隐私
+
+本仓库不包含任何密钥、账号、令牌或本机路径。所有数字都在运行时从当前会话的投影读取，插件不联网、不上报。提交前可跑 `node test/leak-audit.mjs` 自查。
 
 ## 结构
 
@@ -75,7 +82,7 @@ client.js             Client 半边：界面与逻辑
 icon.svg              Plugin Manager 图标
 locale/zh.json        插件标题与描述（中文）
 locale/en.json        插件标题与描述（英文）
-test/                 测试
+test/                 测试与泄漏审计
 ```
 
 ## License
