@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Token stats",
+    "description": "Show this session's token usage, cache hit share, and context occupancy below the composer"
+  }
+}

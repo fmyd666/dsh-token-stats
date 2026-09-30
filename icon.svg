@@ -1,0 +1,13 @@
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Explicit colors: this file is loaded through an img src, which inherits
+       no CSS color, so a CSS-relative stroke would resolve to black. -->
+  <defs>
+    <linearGradient id="tokenStatsStroke" x1="8" y1="8" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67C7FE"/>
+      <stop offset="1" stop-color="#3F77D8"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="18" cy="10" rx="9.5" ry="4.2" stroke="url(#tokenStatsStroke)" stroke-width="2.4"/>
+  <path d="M8.5 10v7c0 2.32 4.25 4.2 9.5 4.2s9.5-1.88 9.5-4.2v-7" stroke="url(#tokenStatsStroke)" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M8.5 17v7c0 2.32 4.25 4.2 9.5 4.2s9.5-1.88 9.5-4.2v-7" stroke="url(#tokenStatsStroke)" stroke-width="2.4" stroke-linecap="round"/>
+</svg>
